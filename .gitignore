@@ -1,7 +1,3 @@
-.media
-/stats._pycache_
-/stats.migrations
-/stats_project._pycache_
-db.sqlite3
-/users._pycache_
-/users.migrations
+/media
+**/_pycache_
+**/migrations
