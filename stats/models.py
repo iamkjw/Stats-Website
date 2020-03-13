@@ -10,6 +10,17 @@ class Game(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='game_pics')
 
+    def save(self):
+        super().save()
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            output_size = (300, 300)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
+
 class Results(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     score = models.BooleanField

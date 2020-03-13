@@ -23,3 +23,6 @@ def newgame(request):
     else:
         form = GameRegisterForm()
     return render(request, 'stats/newgame.html', {'form': form})
+
+def game(request):
+    return render(request, 'stats/game.html')
