@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import GameRegisterForm
 from .models import Game
+from django.views.generic.detail import DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def home(request):
     Games = Game.objects.all()
@@ -24,5 +26,8 @@ def newgame(request):
         form = GameRegisterForm()
     return render(request, 'stats/newgame.html', {'form': form})
 
-def game(request):
-    return render(request, 'stats/game.html')
+class GameDetailView(DetailView,LoginRequiredMixin):
+    context_object_name = 'game_detail'
+    template_name = 'stats/game.html' 
+    model = Game
+    slug_url_kwarg = 'slug'

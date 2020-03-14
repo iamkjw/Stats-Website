@@ -5,5 +5,5 @@ urlpatterns = [
     path('', views.home, name='stats-home'),
     path('about/', views.about, name='stats-about'),
     path('newgame/', views.newgame, name='stats-newgame'),
-    path('game/', views.game, name='stats-game')
+    path('game/<slug:slug>/', views.GameDetailView.as_view(), name='stats-game')
 ]
